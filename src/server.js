@@ -1,10 +1,14 @@
 'use strict';
 const express = require('express');
 const app = express();
+const middlewares = require('./middlewares');
 const registerRoutes = require('./routes');
 
 // server config
 const port = process.env.PORT || 3000;
+
+// register middlewares
+middlewares(app);
 
 // register routes
 registerRoutes(app);
