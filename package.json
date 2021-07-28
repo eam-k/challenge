@@ -5,16 +5,40 @@
   "main": "./src/index.js",
   "scripts": {
     "start": "node ./src/index.js",
-    "dev": "nodemon ./src/index.js"
+    "dev": "nodemon ./src/index.js",
+    "parcel": "parcel ./client/index.html;  cp -a ./dist/. ./public/",
+    "eslint": "node_modules/.bin/eslint --max-warnings 0 ./src/**  \"client/**/*.{js,jsx}\" ",
+    "prettier": "prettier --write \"src/**/*.{js,jsx}\" \"client/**/*.{js,jsx}\"",
+    "format": "npm run eslint && npm run prettier"
   },
   "author": "walmex-team",
   "license": "ISC",
   "dependencies": {
     "express": "^4.17.1",
     "lodash": "^4.17.21",
-    "serve-favicon": "^2.5.0"
+    "serve-favicon": "^2.5.0",
+    "core-js": "^3.15.2",
+    "react": "^17.0.1",
+    "react-dom": "^17.0.1"
   },
   "devDependencies": {
-    "nodemon": "^2.0.12"
-  }
+    "@babel/core": "^7.12.16",
+    "@babel/eslint-parser": "^7.13.4",
+    "@babel/plugin-proposal-class-properties": "^7.13.0",
+    "@babel/plugin-transform-runtime": "^7.14.5",
+    "@babel/preset-env": "^7.13.5",
+    "@babel/preset-react": "^7.12.13",
+    "eslint": "^7.21.0",
+    "eslint-config-prettier": "^8.1.0",
+    "eslint-plugin-import": "^2.22.1",
+    "eslint-plugin-jsx-a11y": "^6.4.1",
+    "eslint-plugin-react": "^7.22.0",
+    "eslint-plugin-react-hooks": "^4.2.0",
+    "nodemon": "^2.0.12",
+    "parcel-bundler": "^1.12.5",
+    "prettier": "^2.2.1"
+  },
+  "browserslist": [
+    "last 2 Chrome versions"
+  ]
 }
