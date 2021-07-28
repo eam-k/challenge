@@ -1,7 +1,7 @@
 'use strict'
 /*
-This file (db.js) represents an in-memory db in the form of a javascript object.
-*/
+ * This file (db.js) represents an in-memory db in the form of a javascript object.
+ */
 module.exports = {
   // DO NOT MODIFY usersById
   usersById: {

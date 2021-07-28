@@ -8,9 +8,13 @@ const db = require('./db.js')
  * @returns
  */
 const mockDBCall = (dataAccessMethod) => {
-  return new Promise((resolve) => {
+  return new Promise((resolve, reject) => {
     setTimeout(() => {
-      resolve(dataAccessMethod())
+      try {
+        resolve(dataAccessMethod())
+      } catch (e) {
+        reject(e)
+      }
     }, 500)
   })
 }

@@ -4,9 +4,10 @@
   "description": "coding challenge",
   "main": "./src/index.js",
   "scripts": {
-    "start": "node ./src/index.js",
+    "build": "npm run format && parcel build ./client/index.html --out-dir public",
+    "start": "npm run build && node ./src/index.js",
     "dev": "nodemon ./src/index.js",
-    "parcel": "parcel ./client/index.html;  cp -a ./dist/. ./public/",
+    "parcel": "parcel ./client/index.html",
     "eslint": "node_modules/.bin/eslint --max-warnings 0 ./src/**  \"client/**/*.{js,jsx}\" ",
     "prettier": "prettier --write \"src/**/*.{js,jsx}\" \"client/**/*.{js,jsx}\"",
     "format": "npm run eslint && npm run prettier"
@@ -14,10 +15,10 @@
   "author": "walmex-team",
   "license": "ISC",
   "dependencies": {
+    "core-js": "^3.15.2",
+    "cors": "^2.8.5",
     "express": "^4.17.1",
     "lodash": "^4.17.21",
-    "serve-favicon": "^2.5.0",
-    "core-js": "^3.15.2",
     "react": "^17.0.1",
     "react-dom": "^17.0.1"
   },

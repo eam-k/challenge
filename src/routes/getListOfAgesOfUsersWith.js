@@ -1,13 +1,14 @@
 'use strict'
 const mockDBCalls = require('../database/index.js')
 
-const getListOfAgesOfUsersWithHandler = async (request, response, next) => {
+const getListOfAgesOfUsersWithHandler = (request, response, next) => {
   const { item } = request.params
 
-  if (typeof item !== 'string' || item.length < 0)
-    return response.json({ data: {} })
+  if (typeof item !== 'string' || item.length < 0) {
+    return response.json({ data: [] })
+  }
 
-  const data = await Promise.all([
+  Promise.all([
     mockDBCalls.getUsers(),
     mockDBCalls.getListOfAgesOfUsersWith(item),
   ])
@@ -21,11 +22,15 @@ const getListOfAgesOfUsersWithHandler = async (request, response, next) => {
           ageAndCount[userInfo.age] += 1
         }
       })
-      return ageAndCount
+      const groups = Object.entries(ageAndCount).map(([age, count]) => {
+        return { age, count }
+      })
+      return response.json({ data: groups })
     })
-    .catch(next)
-
-  return response.json({ data })
+    .catch((err) => {
+      console.error('Calling next')
+      next(err)
+    })
 }
 
 module.exports = (app) => {

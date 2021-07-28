@@ -1,19 +1,23 @@
 'use strict'
 const express = require('express')
 const app = express()
-const middlewares = require('./middlewares')
+const initSetup = require('./middlewares/setup')
+const errorHandling = require('./middlewares/error')
 const registerRoutes = require('./routes')
 
-// server config
+// Server config
 const port = process.env.PORT || 3000
 
-// register middlewares
-middlewares(app)
+// Register middlewares
+initSetup(app)
 
-// register routes
+// Register routes
 registerRoutes(app)
 
-// create server start method
+// Basic error handler
+errorHandling(app)
+
+// Create server start method
 const start = () => {
   return new Promise((resolve) => {
     // start the server
